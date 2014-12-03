@@ -44,7 +44,6 @@ def addbul(request):
 
         # retrieves all folders of the current viewer
         q2 = Folder.objects.filter(owner__exact=author)
-
         folders = [f for f in q2]
         return render_to_response('/addbul',{'folder':folders}, {'bulletin':bulletins}, context)
     else:
@@ -54,6 +53,7 @@ def addbul(request):
 
         # retrieves all folders of the current viewer
         q2 = Folder.objects.filter(owner__exact=author)
+        folders = [f for f in q2]
 
         return render_to_response('/addbul',{'folder':folders}, {'bulletin':bulletins}, context)
 
