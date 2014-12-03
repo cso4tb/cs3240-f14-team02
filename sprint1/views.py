@@ -239,6 +239,7 @@ def register(request):
             #the set_password method will hash the password
             user.set_password(user.password) #Django does this to password fields by default.
             user.save()
+            signals.post_save.connect(create_user_profile, sender=User)
             pubkey=RSA.generate(KEY_LENGTH,random_gen)
             key = Key(owner=user,public=pubkey.publickey().exportKey('PEM'))
             key.save()
